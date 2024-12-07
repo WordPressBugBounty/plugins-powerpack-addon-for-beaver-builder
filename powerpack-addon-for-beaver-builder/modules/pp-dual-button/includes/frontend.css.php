@@ -6,13 +6,22 @@ $spacing_responsive = isset( $settings->button_spacing_responsive ) ? $settings-
 $custom_breakpoint = isset( $settings->responsive_breakpoint ) && ! empty( $settings->responsive_breakpoint ) ? $settings->responsive_breakpoint : 0;
 ?>
 
-.fl-node-<?php echo $id; ?> .pp-spacer {
-	float: left;
-	height: 1px;
-	width: <?php echo $spacing; ?>px;
-}
-
 <?php
+FLBuilderCSS::responsive_rule( array(
+	'settings'     => $settings,
+	'setting_name' => 'button_alignment',
+	'selector'     => ".fl-node-$id .pp-dual-button-content",
+	'prop'         => 'text-align',
+) );
+
+FLBuilderCSS::responsive_rule( array(
+	'settings'     => $settings,
+	'setting_name' => 'button_spacing',
+	'selector'     => ".fl-node-$id .pp-dual-button-inner",
+	'prop'         => 'gap',
+	'unit'         => 'px'
+) );
+
 // Button padding.
 FLBuilderCSS::dimension_field_rule(
 	array(
@@ -46,6 +55,11 @@ FLBuilderCSS::responsive_rule( array(
 	'unit'         => 'px'
 ) );
 ?>
+.fl-node-<?php echo $id; ?> .pp-dual-button-inner {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: <?php echo 'left' === $settings->button_alignment ? 'flex-start' : ( 'right' === $settings->button_alignment ? 'flex-end' : $settings->button_alignment ); ?>;
+}
 .fl-node-<?php echo $id; ?> .pp-dual-button-content a.pp-button {
 	<?php if ( $settings->button_border_width ) { ?>
 		border-width: <?php echo $settings->button_border_width; ?>px;
@@ -161,10 +175,6 @@ FLBuilderCSS::responsive_rule( array(
 		text-align: center;
 	}
 <?php } ?>
-.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-inner {
-	display: inline-block;
-	float: <?php echo ( 'center' === $settings->button_alignment ) ? 'none' : $settings->button_alignment; ?>;
-}
 
 .fl-node-<?php echo $id; ?> .pp-dual-button-1 .pp-custom-icon {
 	<?php if ( $settings->button_1_custom_icon_width ) { ?>
@@ -301,17 +311,10 @@ FLBuilderCSS::responsive_rule( array(
 				text-align: center;
 			}
 		<?php } ?>
-		.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-inner {
-			float: <?php echo ( 'center' === $settings->button_alignment_medium ) ? 'none' : $settings->button_alignment_medium; ?>;
-			text-align: center;
+		.fl-node-<?php echo $id; ?> .pp-dual-button-inner {
+			justify-content: <?php echo 'left' === $settings->button_alignment_medium ? 'flex-start' : ( 'right' === $settings->button_alignment_medium ? 'flex-end' : $settings->button_alignment_medium ); ?>;
 		}
 	<?php } ?>
-	.fl-node-<?php echo $id; ?> .pp-spacer {
-		width: <?php echo '' === $spacing_medium ? 10 : $spacing_medium; ?>px;
-		<?php if ( $custom_breakpoint === $global_settings->medium_breakpoint ) { ?>
-			height: <?php echo '' === $spacing_medium ? 10 : $spacing_medium; ?>px;
-		<?php } ?>
-	}
 }
 
 @media only screen and ( max-width: <?php echo $global_settings->responsive_breakpoint; ?>px ) {
@@ -321,20 +324,17 @@ FLBuilderCSS::responsive_rule( array(
 				text-align: center;
 			}
 		<?php } ?>
-		.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-inner {
-			float: <?php echo ( 'center' === $settings->button_alignment_responsive ) ? 'none' : $settings->button_alignment_responsive; ?>;
-			text-align: center;
+		.fl-node-<?php echo $id; ?> .pp-dual-button-inner {
+			justify-content: <?php echo 'left' === $settings->button_alignment_responsive ? 'flex-start' : ( 'right' === $settings->button_alignment_responsive ? 'flex-end' : $settings->button_alignment_responsive ); ?>;
 		}
 	<?php } ?>
-	.fl-node-<?php echo $id; ?> .pp-spacer {
-		width: <?php echo '' === $spacing_responsive ? 10 : $spacing_responsive; ?>px;
-	}
 }
 
 @media only screen and ( max-width: <?php echo $custom_breakpoint; ?>px ) {
 	.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-inner {
 		float: none;
 		text-align: center;
+		flex-direction: column;
 	}
 	.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button,
 	.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button .pp-button {
@@ -343,20 +343,12 @@ FLBuilderCSS::responsive_rule( array(
 		margin: 0 auto;
 		max-width: 100%;
 	}
-	.fl-node-<?php echo $id; ?> .pp-spacer {
-		float: none;
-		height: <?php echo '' === $spacing_responsive ? 10 : $spacing_responsive; ?>px;
-	}
 	<?php if ( isset( $settings->button_alignment_responsive ) && ! empty( $settings->button_alignment_responsive ) ) { ?>
 		<?php if ( 'center' === $settings->button_alignment_responsive || 'none' === $settings->button_alignment_responsive ) { ?>
 			.fl-node-<?php echo $id; ?> .pp-dual-button-content {
 				text-align: center;
 			}
 		<?php } ?>
-		.fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-inner {
-			display: inline-block;
-			float: <?php echo ( 'center' === $settings->button_alignment_responsive ) ? 'none' : $settings->button_alignment_responsive; ?>;
-		}
 	<?php } ?>
 
 }

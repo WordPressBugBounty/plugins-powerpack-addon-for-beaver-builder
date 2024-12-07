@@ -10,7 +10,7 @@
 				<span class="pp-icon <?php echo $item->icon_select; ?>" role="presentation"></span>
 			<?php } else { ?>
 				<?php if ( isset( $item->image_select_src ) && ! empty( $item->image_select_src ) ) { ?>
-				<img src="<?php echo esc_url( $item->image_select_src ); ?>" alt="<?php echo get_the_title( absint( $item->image_select ) ); ?>" role="presentation" />
+				<img src="<?php echo esc_url( $item->image_select_src ); ?>" alt="<?php echo get_the_title( absint( $item->image_select ) ); ?>"<?php echo pp_get_image_size_attrs( $item->image_select ); ?> role="presentation" />
 				<?php } ?>
 			<?php } ?>
 		</div>

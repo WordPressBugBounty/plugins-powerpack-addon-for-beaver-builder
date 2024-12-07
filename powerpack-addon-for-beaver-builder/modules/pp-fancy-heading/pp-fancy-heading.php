@@ -183,7 +183,7 @@ FLBuilder::register_module('PPFancyHeadingModule', array(
                         'type'          => 'select',
                         'label'         => __('HTML Tag', 'bb-powerpack'),
                         'default'       => 'h2',
-						'sanitize' => array( 'FLBuilderUtils::esc_tags', 'h2' ),
+						'sanitize' => array( 'pp_esc_tags', 'h2' ),
                         'options'       => array(
                             'h1'            => 'h1',
                             'h2'            => 'h2',

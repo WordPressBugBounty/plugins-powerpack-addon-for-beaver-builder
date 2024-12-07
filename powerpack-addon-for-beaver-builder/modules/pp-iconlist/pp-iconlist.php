@@ -33,7 +33,7 @@ class PPIconListModule extends FLBuilderModule {
 			$enqueue = true;
 		}
 
-		if ( $enqueue && is_callable( 'parent::enqueue_icon_styles' ) ) {
+		if ( $enqueue && is_callable( parent::class . '::enqueue_icon_styles' ) ) {
 			parent::enqueue_icon_styles();
 		}
 	}

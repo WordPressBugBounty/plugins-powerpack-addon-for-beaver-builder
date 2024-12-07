@@ -559,7 +559,7 @@ FLBuilder::register_module('PPInfoListModule', array(
 						'type'		=> 'select',
 						'label'		=> __('HTML Tag', 'bb-powerpack'),
 						'default'	=> 'h3',
-						'sanitize' => array( 'FLBuilderUtils::esc_tags', 'h3' ),
+						'sanitize' => array( 'pp_esc_tags', 'h3' ),
 						'options'	=> array(
 							'h1'		=> 'h1',
 							'h2'		=> 'h2',

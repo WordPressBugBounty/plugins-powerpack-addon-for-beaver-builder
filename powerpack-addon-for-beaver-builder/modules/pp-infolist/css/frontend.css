@@ -45,6 +45,7 @@
 	list-style: none;
 	padding-bottom: 25px;
 	position: relative;
+	margin: 0;
 }
 .pp-infolist-wrap .pp-list-item-content {
 	position: relative;
@@ -64,7 +65,7 @@
 .pp-infolist {
 	text-align: center;
 }
-.pp-infolist ul {
+.pp-infolist ul.pp-list-items {
 	margin: 0;
 	padding: 0;
 	display: flex;

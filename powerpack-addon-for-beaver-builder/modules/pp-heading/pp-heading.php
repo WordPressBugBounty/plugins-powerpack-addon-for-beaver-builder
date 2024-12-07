@@ -302,7 +302,7 @@ class PPHeadingModule extends FLBuilderModule {
 		}
 		?>
 
-		<div class="pp-heading-separator <?php echo $settings->heading_separator; ?> pp-<?php echo $settings->heading_alignment; ?>">
+		<div class="pp-heading-separator <?php echo $settings->heading_separator; ?> pp-<?php echo esc_attr( $settings->heading_alignment ); ?>">
 		<?php
 		if ( 'line_only' === $separator ) {
 			$this->render_separator_line_only();
@@ -364,7 +364,7 @@ class PPHeadingModule extends FLBuilderModule {
 		$settings = $this->settings;
 
 		?>
-		<i class="<?php echo $settings->heading_font_icon_select; ?> pp-separator-font-icon"></i>
+		<i class="<?php echo esc_attr( $settings->heading_font_icon_select ); ?> pp-separator-font-icon"></i>
 		<?php
 	}
 
@@ -377,7 +377,7 @@ class PPHeadingModule extends FLBuilderModule {
 		}
 
 		?>
-		<img class="heading-icon-image" src="<?php echo $settings->heading_custom_icon_select_src; ?>" alt="<?php echo $alt; ?>" />
+		<img class="heading-icon-image" src="<?php echo esc_url( $settings->heading_custom_icon_select_src ); ?>" alt="<?php echo esc_attr( $alt ); ?>" />
 		<?php
 	}
 }
@@ -399,7 +399,7 @@ FLBuilder::register_module(
 							'type'          => 'select',
 							'label'         => __('Tag', 'bb-powerpack'),
 							'default'       => 'div',
-							'sanitize' => array( 'FLBuilderUtils::esc_tags', 'div' ),
+							'sanitize' => array( 'pp_esc_tags', 'div' ),
 							'options'       => array(
 								'h1'            => 'H1',
 								'h2'            => 'H2',
@@ -430,7 +430,7 @@ FLBuilder::register_module(
 							'type'          => 'select',
 							'label'         => __('Tag', 'bb-powerpack'),
 							'default'       => 'h2',
-							'sanitize' => array( 'FLBuilderUtils::esc_tags', 'h2' ),
+							'sanitize' => array( 'pp_esc_tags', 'h2' ),
 							'options'       => array(
 								'h1'            => 'H1',
 								'h2'            => 'H2',
@@ -536,10 +536,6 @@ FLBuilder::register_module(
 							'rows'                  => '6',
 							'media_buttons'         => true,
 							'connections'            => array( 'string', 'html', 'url' ),
-							'preview'               => array(
-								'type'                  => 'text',
-								'selector'              => '.pp-heading-content .pp-sub-heading'
-							)
 						),
 					)
 				),
@@ -1320,7 +1316,7 @@ FLBuilder::register_module(
 							'connections'	=> array('color'),
 							'preview'         => array(
 								'type'            => 'css',
-								'selector'        => '.pp-heading-content .pp-sub-heading',
+								'selector'        => '.pp-heading-content .pp-sub-heading, .pp-heading-content .pp-sub-heading p',
 								'property'        => 'color'
 							)
 						),

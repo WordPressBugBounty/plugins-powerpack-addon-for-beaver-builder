@@ -12,28 +12,28 @@ class WPML_PP_Pricing_Table extends WPML_Beaver_Builder_Module_With_Items {
 	protected function get_title( $field ) {
 		switch( $field ) {
 			case 'hl_featured_title':
-                return esc_html__( 'Pricing Table - Featured Title', 'bb-powerpack-lite' );
+                return esc_html__( 'Pricing Table - Featured Title', 'bb-powerpack' );
 
             case 'title':
-                return esc_html__( 'Pricing Table - Package Title', 'bb-powerpack-lite' );
+                return esc_html__( 'Pricing Table - Package Title', 'bb-powerpack' );
 
             case 'price':
-                return esc_html__( 'Pricing Table - Price', 'bb-powerpack-lite' );
+                return esc_html__( 'Pricing Table - Price', 'bb-powerpack' );
 
 			case 'duration':
-				return esc_html__( 'Pricing Table - Duration', 'bb-powerpack-lite' );
+				return esc_html__( 'Pricing Table - Duration', 'bb-powerpack' );
 
 			case 'features':
-				return esc_html__( 'Pricing Table - Feature', 'bb-powerpack-lite' );
+				return esc_html__( 'Pricing Table - Feature', 'bb-powerpack' );
 
 			case 'button_text':
-				return esc_html__( 'Pricing Table - Button Text', 'bb-powerpack-lite' );
+				return esc_html__( 'Pricing Table - Button Text', 'bb-powerpack' );
 
 			case 'button_url':
-				return esc_html__( 'Pricing Table - Button URL', 'bb-powerpack-lite' );
+				return esc_html__( 'Pricing Table - Button URL', 'bb-powerpack' );
 
 			case 'matrix_items':
-				return esc_html__( 'Pricing Table - Matrix Item', 'bb-powerpack-lite' );
+				return esc_html__( 'Pricing Table - Matrix Item', 'bb-powerpack' );
 
 			default:
 				return '';

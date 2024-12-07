@@ -16,7 +16,7 @@ $has_link = apply_filters( 'pp_infobox_icon_link_enabled', true, $settings );
 			<?php if ( $has_link && ( 'button' == $settings->pp_infobox_link_type || 'read_more' == $settings->pp_infobox_link_type ) ) { ?>
 			<a href="<?php echo esc_url( do_shortcode( $settings->link ) ); ?>" target="<?php echo $settings->link_target; ?>">
 			<?php } ?>
-				<img src="<?php echo esc_url( $settings->image_select_src ); ?>" alt="<?php echo $module->get_alt(); ?>" />
+				<img src="<?php echo esc_url( $settings->image_select_src ); ?>" alt="<?php echo $module->get_alt(); ?>"<?php echo pp_get_image_size_attrs( $settings->image_select ); ?> />
 			<?php if ( $has_link && ( 'button' == $settings->pp_infobox_link_type || 'read_more' == $settings->pp_infobox_link_type ) ) { ?>
 			</a>
 			<?php } ?>

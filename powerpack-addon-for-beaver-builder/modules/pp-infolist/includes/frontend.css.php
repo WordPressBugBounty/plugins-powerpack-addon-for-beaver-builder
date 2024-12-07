@@ -52,7 +52,7 @@ FLBuilderCSS::border_field_rule( array(
 	FLBuilderCSS::responsive_rule( array(
 		'settings'		=> $settings,
 		'setting_name'	=> 'list_spacing',
-		'selector'		=> ".fl-node-$id .pp-infolist ul",
+		'selector'		=> ".fl-node-$id .pp-infolist ul.pp-list-items",
 		'prop'			=> 'gap',
 		'unit'			=> 'px',
 		'enabled'		=> ( isset( $settings->list_spacing ) && $settings->list_spacing >= 0 )

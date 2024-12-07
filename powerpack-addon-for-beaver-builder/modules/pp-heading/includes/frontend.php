@@ -17,7 +17,7 @@ $is_link_enabled = ( isset( $settings->enable_link ) && 'yes' === $settings->ena
 				<a class="pp-heading-link"
 					href="<?php echo esc_url( do_shortcode( $settings->heading_link ) ); ?>"
 					target="<?php echo esc_attr( $settings->heading_link_target ); ?>"
-					<?php echo ( isset( $settings->heading_link_nofollow ) && 'on' == $settings->heading_link_nofollow ) ? ' rel="nofollow"' : ''; ?>
+					<?php echo ( isset( $settings->heading_link_nofollow ) && 'yes' == $settings->heading_link_nofollow ) ? ' rel="nofollow"' : ''; ?>
 					>
 			<?php endif; ?>
 

@@ -2,25 +2,25 @@
 $attrs = array();
 $attr = ' ';
 
-$profile = $settings->profile;
-$hashtag = $settings->hashtag_url;
-$recipient_id = $settings->recipient_id;
+$profile      = esc_attr( $settings->profile );
+$hashtag      = esc_attr( $settings->hashtag_url );
+$recipient_id = esc_attr( $settings->recipient_id );
 $default_text = ( isset( $settings->default_text ) && ! empty( $settings->default_text ) ) ? rawurlencode( $settings->default_text ) : '';
 
-$attrs['data-size'] 		= ( 'yes' == $settings->large_button ) ? 'large' : '';
+$attrs['data-size'] = ( 'yes' == $settings->large_button ) ? 'large' : '';
 if ( 'share' == $settings->button_type || 'mention' == $settings->button_type || 'hashtag' == $settings->button_type ) {
-	$attrs['data-via'] 			= $settings->via;
-	$attrs['data-text'] 		= $settings->share_text;
-	$attrs['data-url'] 			= $settings->share_url;
+	$attrs['data-via']  = esc_attr( $settings->via );
+	$attrs['data-text'] = esc_attr( $settings->share_text );
+	$attrs['data-url']  = esc_url( $settings->share_url );
 }
-$attrs['data-lang'] 		= get_locale();
+$attrs['data-lang'] = get_locale();
 
 if ( 'mention' == $settings->button_type ) {
-	$attrs['data-show-count'] 	= ( 'yes' == $settings->show_count ) ? 'true' : 'false';
+	$attrs['data-show-count'] = ( 'yes' == $settings->show_count ) ? 'true' : 'false';
 }
 
 if ( 'message' == $settings->button_type ) {
-	$attrs['data-screen-name'] 	= $profile;
+	$attrs['data-screen-name'] = $profile;
 }
 
 foreach ( $attrs as $key => $value ) {

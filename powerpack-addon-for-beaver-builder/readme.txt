@@ -3,8 +3,8 @@ Contributors: ideaboxcreations, puneetsahalot, ibachal, jainnidhi
 Tags: beaver builder, beaver builder free, beaver addons, beaver builder addon, beaver builder add ons, beaver builder lite, beaver builder modules, beaver builder addons, beaver builder extensions, beaver addon, beaver builder plugin, beaver builder wordpress
 Requires at least: 4.6
 Requires PHP: 7.4
-Tested up to: 6.5.4
-Stable tag: trunk
+Tested up to: 6.7.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -199,6 +199,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= 1.3.1 - December 7, 2024 =
+*   Enhancement: Info Box - Added more units for the button custom width
+*	Enhancement: Info Box - Added explicit width and height attribute to image tag
+*	Enhancement: Info List - Added explicit width and height attribute to image tag
+*   Fix: Info Box - Button icon size was not working for dashicons
+*   Fix: Smart Heading - Link nofollow was not working
+*	Fix: Dual Buttons - Vertical spacing issue when buttons are stacked
+*   Fix: Dual Buttons - Alignment issue in some cases
+*	Security: Potential XSS fix in the PowerPack admin settings
 
 = 1.3.0.5 - June 24, 2024 =
 *	Security: Added more sanitization and escaping to prevent any potential XSS

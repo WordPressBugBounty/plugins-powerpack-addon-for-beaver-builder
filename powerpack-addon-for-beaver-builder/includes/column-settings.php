@@ -53,7 +53,7 @@ function pp_column_round_corners( $form, $id ) {
 
     $form['tabs']['style']['sections']['border']['fields']['pp_round_corners'] = array(
         'type'              => 'pp-multitext',
-        'label'             => __('Round Corners', 'bb-powerpack-lite'),
+        'label'             => __('Round Corners', 'bb-powerpack'),
         'description'       => 'px',
         'default'           => array(
             'top_left'          => 0,
@@ -63,20 +63,20 @@ function pp_column_round_corners( $form, $id ) {
         ),
         'options'           => array(
             'top_left'          => array(
-                'placeholder'       => __('Top Left', 'bb-powerpack-lite'),
-                'tooltip'           => __('Top Left', 'bb-powerpack-lite')
+                'placeholder'       => __('Top Left', 'bb-powerpack'),
+                'tooltip'           => __('Top Left', 'bb-powerpack')
             ),
             'top_right'         => array(
-                'placeholder'       => __('Top Right', 'bb-powerpack-lite'),
-                'tooltip'           => __('Top Right', 'bb-powerpack-lite')
+                'placeholder'       => __('Top Right', 'bb-powerpack'),
+                'tooltip'           => __('Top Right', 'bb-powerpack')
             ),
             'bottom_left'       => array(
-                'placeholder'       => __('Bottom Left', 'bb-powerpack-lite'),
-                'tooltip'           => __('Bottom Left', 'bb-powerpack-lite')
+                'placeholder'       => __('Bottom Left', 'bb-powerpack'),
+                'tooltip'           => __('Bottom Left', 'bb-powerpack')
             ),
             'bottom_right'      => array(
-                'placeholder'       => __('Bottom Right', 'bb-powerpack-lite'),
-                'tooltip'           => __('Bottom Right', 'bb-powerpack-lite')
+                'placeholder'       => __('Bottom Right', 'bb-powerpack'),
+                'tooltip'           => __('Bottom Right', 'bb-powerpack')
             ),
         )
     );

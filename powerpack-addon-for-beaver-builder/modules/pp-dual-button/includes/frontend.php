@@ -39,7 +39,6 @@ if ( isset( $settings->enable_title_attr_2 ) && 'yes' === $settings->enable_titl
 				<?php } ?>
 			</a>
 		</div>
-		<div class="pp-spacer"></div>
 		<div class="pp-dual-button-2 pp-dual-button pp-button-effect-<?php echo $settings->button_2_effect; ?>">
 			<a href="<?php echo esc_url( do_shortcode( $settings->button_2_link ) ); ?>" class="pp-button <?php echo esc_attr( $settings->button_2_css_class ); ?>" role="button"<?php echo $target_2; ?><?php echo $nofollow_2; ?><?php echo $attr2; ?> onclick="">
 				<?php if ( 'left' === $settings->button_2_icon_aligment ) { ?>

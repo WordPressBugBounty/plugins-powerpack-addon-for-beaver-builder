@@ -712,7 +712,7 @@ FLBuilder::register_module('PPInfoBoxModule', array(
 						'type'                  => 'unit',
 						'label'                 => __('Custom Width', 'bb-powerpack'),
 						'default'               => '',
-						'units'					=> array('px'),
+						'units'					=> array('px', '%', 'em', 'vw'),
 						'slider'           		=> true,
 						'responsive'			=> true,
 						'preview'				=> array(
@@ -1210,7 +1210,7 @@ FLBuilder::register_module('PPInfoBoxModule', array(
 						'type'      => 'select',
 						'label'     => __('HTML Tag', 'bb-powerpack'),
 						'default'   => 'span',
-						'sanitize' => array( 'FLBuilderUtils::esc_tags', 'span' ),
+						'sanitize' => array( 'pp_esc_tags', 'span' ),
 						'options'   => array(
 							'h1'        => 'H1',
 							'h2'        => 'H2',
@@ -1242,7 +1242,7 @@ FLBuilder::register_module('PPInfoBoxModule', array(
 						'type'      => 'select',
 						'label'     => __('HTML Tag', 'bb-powerpack'),
 						'default'   => 'h4',
-						'sanitize' => array( 'FLBuilderUtils::esc_tags', 'h4' ),
+						'sanitize' => array( 'pp_esc_tags', 'h4' ),
 						'options'   => array(
 							'h1'        => 'H1',
 							'h2'        => 'H2',

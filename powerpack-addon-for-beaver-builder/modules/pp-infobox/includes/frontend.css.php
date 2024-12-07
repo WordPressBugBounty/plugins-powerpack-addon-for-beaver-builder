@@ -76,7 +76,7 @@ $has_button = $settings->pp_infobox_link_type == 'button' || $settings->pp_infob
 }
 <?php } ?>
 
-.fl-node-<?php echo $id; ?> .pp-infobox-title-prefix {
+.fl-node-<?php echo $id; ?> .pp-infobox .pp-infobox-title-prefix {
 	<?php if ( empty( $settings->title_prefix ) ) { ?>
 	display: none;
 	<?php } ?>
@@ -122,6 +122,11 @@ FLBuilderCSS::typography_field_rule( array(
 ) );
 ?>
 <?php if ( 'box' === $settings->pp_infobox_link_type || 'none' === $settings->pp_infobox_link_type ) { ?>
+	.fl-node-<?php echo $id; ?> .pp-infobox:hover .pp-infobox-title-prefix {
+		<?php if ( isset( $settings->title_prefix_color_h ) && ! empty( $settings->title_prefix_color_h ) ) { ?>
+			color: <?php echo pp_get_color_value( $settings->title_prefix_color_h ); ?>;
+		<?php } ?>
+	}
 	.fl-node-<?php echo $id; ?> .pp-infobox:hover .pp-infobox-title {
 		<?php if ( !empty( $settings->title_color_h ) ) { ?>
 			color: <?php echo pp_get_color_value( $settings->title_color_h ); ?>;
@@ -138,6 +143,11 @@ FLBuilderCSS::typography_field_rule( array(
 		<?php } ?>
 	}
 <?php } else { ?>
+	.fl-node-<?php echo $id; ?> .pp-infobox .pp-infobox-title-prefix:hover {
+		<?php if ( isset( $settings->title_prefix_color_h ) && ! empty( $settings->title_prefix_color_h ) ) { ?>
+			color: <?php echo pp_get_color_value( $settings->title_prefix_color_h ); ?>;
+		<?php } ?>
+	}
 	.fl-node-<?php echo $id; ?> .pp-infobox .pp-infobox-title:hover {
 		<?php if ( !empty( $settings->title_color_h ) ) { ?>
 			color: <?php echo pp_get_color_value( $settings->title_color_h ); ?>;
@@ -333,7 +343,7 @@ FLBuilderCSS::typography_field_rule( array(
 			'setting_name'	=> 'button_width_custom',
 			'selector'		=> ".fl-node-$id .pp-infobox .pp-more-link",
 			'prop'			=> 'width',
-			'unit'			=> 'px',
+			'unit'			=> isset( $settings->button_width_custom_unit ) ? $settings->button_width_custom_unit : 'px',
 			'enabled'		=> ( $has_button && 'custom' == $settings->button_width )
 		) );
 
@@ -400,6 +410,9 @@ FLBuilderCSS::typography_field_rule( array(
 	.fl-node-<?php echo $id; ?> .pp-infobox .pp-more-link .pp-button-icon {
 		font-size: <?php echo $settings->button_icon_size; ?>px;
 		color: <?php echo pp_get_color_value( $settings->button_icon_color ); ?>;
+	}
+	.fl-node-<?php echo $id; ?> .pp-infobox .pp-more-link .pp-button-icon.dashicons:before {
+		font-size: <?php echo $settings->button_icon_size; ?>px;
 	}
 	.fl-node-<?php echo $id; ?> .pp-infobox .pp-more-link:hover .pp-button-icon {
 		color: <?php echo pp_get_color_value( $settings->button_icon_color_hover ); ?>;
