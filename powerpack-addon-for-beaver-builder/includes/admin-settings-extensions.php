@@ -57,7 +57,7 @@
         </tbody>
     </table>
 
-    <?php submit_button(); ?>
     <?php wp_nonce_field('pp-extensions', 'pp-extensions-nonce'); ?>
+    <?php submit_button(); ?>
 
 <?php } ?>

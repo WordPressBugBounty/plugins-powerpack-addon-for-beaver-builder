@@ -386,7 +386,7 @@ function pp_get_fb_sdk_url()
 	$app_id = pp_get_fb_app_id();
 	
 	if ( $app_id && ! empty( $app_id ) ) {
-		return sprintf( 'https://connect.facebook.net/%s/sdk.js#xfbml=1&version=v2.12&appId=%s', get_locale(), $app_id );
+		return sprintf( 'https://connect.facebook.net/%s/sdk.js#xfbml=1&version=v2.12&appId=%s', get_locale(), esc_html( $app_id ) );
 	}
 
 	return sprintf( 'https://connect.facebook.net/%s/sdk.js#xfbml=1&version=v2.12', get_locale() );
@@ -397,7 +397,7 @@ function pp_get_fb_app_settings_url()
 	$app_id = pp_get_fb_app_id();
 
 	if ( $app_id ) {
-		return sprintf( 'https://developers.facebook.com/apps/%d/settings/', $app_id );
+		return sprintf( 'https://developers.facebook.com/apps/%d/settings/', esc_html( $app_id ) );
 	} else {
 		return 'https://developers.facebook.com/apps/';
 	}
@@ -412,7 +412,7 @@ function pp_get_fb_module_desc()
 		return sprintf( __( 'You can set your Facebook App ID in the <a href="%s" target="_blank">Integrations Settings</a>', 'bb-powerpack' ), BB_PowerPack_Admin_Settings::get_form_action() );
 	} else {
 		// translators: %1$s: app_id, %2$s: Setting Page link.
-		return sprintf( __( 'You are connected to Facebook App %1$s, <a href="%2$s" target="_blank">Change App</a>', 'bb-powerpack' ), $app_id, BB_PowerPack_Admin_Settings::get_form_action() );
+		return sprintf( __( 'You are connected to Facebook App %1$s, <a href="%2$s" target="_blank">Change App</a>', 'bb-powerpack' ), esc_html( $app_id ), BB_PowerPack_Admin_Settings::get_form_action() );
 	}
 }
 

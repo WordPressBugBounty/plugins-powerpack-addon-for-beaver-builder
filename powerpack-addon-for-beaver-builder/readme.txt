@@ -3,8 +3,8 @@ Contributors: ideaboxcreations, puneetsahalot, ibachal, jainnidhi
 Tags: beaver builder, beaver builder free, beaver addons, beaver builder addon, beaver builder add ons, beaver builder lite, beaver builder modules, beaver builder addons, beaver builder extensions, beaver addon, beaver builder plugin, beaver builder wordpress
 Requires at least: 4.6
 Requires PHP: 7.4
-Tested up to: 6.7.1
-Stable tag: 1.3.1
+Tested up to: 7.1.3
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -199,6 +199,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 
 == Changelog ==
+
+= 1.3.2 - October 15, 2026 =
+*   Enhancement: Updated compatibility with WordPress 7.1.x
+*   Security: Potential XSS fix in the PowerPack admin settings
 
 = 1.3.1 - December 7, 2024 =
 *   Enhancement: Info Box - Added more units for the button custom width

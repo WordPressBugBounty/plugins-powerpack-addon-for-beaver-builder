@@ -63,7 +63,7 @@ if ( !class_exists( 'BB_PowerPack_Admin_Settings' ) ) {
             add_action( 'admin_menu',           __CLASS__ . '::menu' );
             add_action( 'network_admin_menu',   __CLASS__ . '::menu' );
 
-    		if ( isset( $_REQUEST['page'] ) && 'ppbb-settings' == $_REQUEST['page'] ) {
+    		if ( isset( $_GET['page'] ) && 'ppbb-settings' == $_GET['page'] ) {
                 add_action( 'admin_enqueue_scripts', __CLASS__ . '::styles_scripts' );
     			self::save();
     		}
@@ -131,7 +131,7 @@ if ( !class_exists( 'BB_PowerPack_Admin_Settings' ) ) {
     	{
     		if ( ! empty( self::$errors ) ) {
     			foreach ( self::$errors as $message ) {
-    				echo '<div class="error"><p>' . $message . '</p></div>';
+    				echo '<div class="error"><p>' . wp_kses_post( $message ) . '</p></div>';
     			}
     		}
     		else if( ! empty( $_POST ) && ! isset( $_POST['email'] ) ) {
@@ -262,23 +262,38 @@ if ( !class_exists( 'BB_PowerPack_Admin_Settings' ) ) {
 		 */
 		static private function save_integration()
 		{
+			if ( ! isset( $_POST['pp-integration-settings-nonce'] ) || ! wp_verify_nonce( $_POST['pp-integration-settings-nonce'], 'pp-integration-settings' ) ) {
+				return;
+			}
+
 			if ( isset( $_POST['bb_powerpack_fb_app_id'] ) && ( ! isset( $_POST['bb_powerpack_license_deactivate'] ) && ! isset( $_POST['bb_powerpack_license_activate'] ) ) ) {
 				
 				// Validate App ID.
 				if ( ! empty( $_POST['bb_powerpack_fb_app_id'] ) ) {
-					$response = wp_remote_get( 'https://graph.facebook.com/' . $_POST['bb_powerpack_fb_app_id'] );
-					$error = '';
+
+					$app_id = trim( $_POST['bb_powerpack_fb_app_id'] );
+
+					// Validate the App ID format (should be a numeric string)
+					if ( ! ctype_digit( $app_id ) ) {
+						$error = __( 'Facebook App ID must be a numeric string.', 'bb-powerpack' );
+					} else {
+						$response = wp_remote_get( 'https://graph.facebook.com/' . $app_id );
+						$error = '';
+					}
 
 					if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
-						$error = __( 'Facebook App ID is not valid.', 'bb-powerpack' );
+						// translators: %s is for API response.
+						$error = sprintf( __( 'Facebook App ID is not valid. Error: %s', 'bb-powerpack' ), wp_remote_retrieve_response_message( $response ) );
 					}
 
 					if ( ! empty( $error ) ) {
-						wp_die( $error, __( 'Facebook SDK', 'bb-powerpack' ), array( 'back_link' => true ) );
+						wp_die( $error, __( 'Facebook SDK', 'bb-powerpack' ), array(
+							'back_link' => true,
+						) );
 					}
 				}
 
-				self::update_option( 'bb_powerpack_fb_app_id', trim( $_POST['bb_powerpack_fb_app_id'] ), false );
+				self::update_option( 'bb_powerpack_fb_app_id', sanitize_text_field( wp_unslash( $_POST['bb_powerpack_fb_app_id'] ) ), false );
 			}
 		}
 
@@ -306,8 +321,9 @@ if ( !class_exists( 'BB_PowerPack_Admin_Settings' ) ) {
                 }
 
                 if ( isset( $_POST['bb_powerpack_extensions'] ) && is_array( $_POST['bb_powerpack_extensions'] ) ) {
-                    self::update_option( 'bb_powerpack_extensions', $_POST['bb_powerpack_extensions'] );
-                }
+					$extensions = array_map( 'sanitize_key', $_POST['bb_powerpack_extensions'] );
+					self::update_option( 'bb_powerpack_extensions', $extensions );
+				}
 
                 if ( ! isset( $_POST['bb_powerpack_extensions'] ) ) {
                     self::update_option( 'bb_powerpack_extensions', array('disabled') );
