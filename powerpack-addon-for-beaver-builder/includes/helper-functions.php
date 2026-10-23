@@ -373,6 +373,10 @@ function pp_get_fb_app_id()
 {
 	$app_id = BB_PowerPack_Admin_Settings::get_option( 'bb_powerpack_fb_app_id' );
 
+	if ( ! ctype_digit( $app_id ) ) {
+		$app_id = '';
+	}
+
 	return $app_id;
 }
 
@@ -386,7 +390,7 @@ function pp_get_fb_sdk_url()
 	$app_id = pp_get_fb_app_id();
 	
 	if ( $app_id && ! empty( $app_id ) ) {
-		return sprintf( 'https://connect.facebook.net/%s/sdk.js#xfbml=1&version=v2.12&appId=%s', get_locale(), esc_html( $app_id ) );
+		return sprintf( 'https://connect.facebook.net/%s/sdk.js#xfbml=1&version=v2.12&appId=%s', get_locale(), esc_js( $app_id ) );
 	}
 
 	return sprintf( 'https://connect.facebook.net/%s/sdk.js#xfbml=1&version=v2.12', get_locale() );

@@ -275,13 +275,14 @@ if ( !class_exists( 'BB_PowerPack_Admin_Settings' ) ) {
 
 					// Validate the App ID format (should be a numeric string)
 					if ( ! ctype_digit( $app_id ) ) {
-						$error = __( 'Facebook App ID must be a numeric string.', 'bb-powerpack' );
+						$response = false;
+						$error    = __( 'Facebook App ID must be a numeric string.', 'bb-powerpack' );
 					} else {
 						$response = wp_remote_get( 'https://graph.facebook.com/' . $app_id );
-						$error = '';
+						$error    = '';
 					}
 
-					if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
+					if ( $response && ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) ) {
 						// translators: %s is for API response.
 						$error = sprintf( __( 'Facebook App ID is not valid. Error: %s', 'bb-powerpack' ), wp_remote_retrieve_response_message( $response ) );
 					}
