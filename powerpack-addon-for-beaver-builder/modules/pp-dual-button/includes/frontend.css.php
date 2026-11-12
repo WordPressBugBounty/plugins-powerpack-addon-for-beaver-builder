@@ -190,14 +190,14 @@ FLBuilderCSS::responsive_rule( array(
 <?php // Button Hover Effects ?>
 .fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-1 .pp-button,
 .fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-1 .pp-button:before {
-	<?php if ( $settings->button_1_effect_duration >= 0 ) { ?>
-		transition-duration: <?php echo $settings->button_1_effect_duration; ?>ms;
+	<?php if ( ! empty( $settings->button_1_effect_duration ) && $settings->button_1_effect_duration >= 0 ) { ?>
+		transition-duration: <?php echo absint( $settings->button_1_effect_duration ); ?>ms;
 	<?php } ?>
 }
 .fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-2 .pp-button,
 .fl-node-<?php echo $id; ?> .pp-dual-button-content .pp-dual-button-2 .pp-button:before {
-	<?php if ( $settings->button_2_effect_duration >= 0 ) { ?>
-		transition-duration: <?php echo $settings->button_2_effect_duration; ?>ms;
+	<?php if ( ! empty( $settings->button_2_effect_duration ) && $settings->button_2_effect_duration >= 0 ) { ?>
+		transition-duration: <?php echo absint( $settings->button_2_effect_duration ); ?>ms;
 	<?php } ?>
 }
 
